@@ -1,0 +1,89 @@
+<div class="wholeContainer">
+  <div class="leftContainer">
+    <div class="navbar navbar-light bg-dark">
+      <div class="container-fluid">
+        <h2 class="text-light primary py-3">Student Management System
+        </h2>
+        <div class="d-flex">
+          <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">AddStudent</button>
+          <button (click)="readStudents()">View</button>
+        </div>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Roll.No</th>
+          <th scope="col">Branch</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of students">
+          <td>{{s._id}}</td>
+          <td>{{s.name}}</td>
+          <td>{{s.rollno}}</td>
+          <td>{{s.branch}}</td>
+          <td>{{s.email}}</td>
+          <td>{{s.phone}}</td>
+          <td><button (click)="editStudents(s._id)" data-bs-toggle="modal" data-bs-target="#exampleModal">EDIT</button>
+          <button (click)="deleteStudents(s._id)">DELETE</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #details="ngForm" (ngSubmit)="addStudents(details.value)">
+          <div class="mb-3">
+            <label class="form-label">ID</label>
+            <input type="text" name="_id" class="form-control" ngModel>
+          </div>
+    
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" name="name" class="form-control" ngModel>
+          </div>
+    
+          <div class="mb-3">
+            <label class="form-label">Roll.No</label>
+            <input type="text" name="rollno" class="form-control" ngModel>
+          </div>
+    
+          <div class="mb-3">
+            <label class="form-label">Branch</label>
+            <input type="text" name="branch" class="form-control" ngModel>
+          </div>
+    
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="text" name="email" class="form-control" ngModel>
+          </div>
+    
+          <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input type="text" name="phone" class="form-control" ngModel>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">{{editMode? 'EditStudent':'AddStudent'}}</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
